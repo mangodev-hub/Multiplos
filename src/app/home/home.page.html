@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-title>Múltiplos de:</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding custom-background">
+  
+  <ion-card color="dark" class="profile-card">
+    <ion-card-header>
+      <ion-card-subtitle>Escuela Politecnica Nacional</ion-card-subtitle>      <ion-card-title>Carlos Daniel Puente Castro</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <!-- Sección de contadores de múltiplos -->
+  <ion-list class="counters-container">
+    @for (counter of counters; track counter.base) {
+      <ion-item [style.--background]="counter.color" class="counter-item">
+        <ion-label class="counter-label">
+          <h2>Múltiplos de {{ counter.base }}</h2>
+          <p class="counter-value">Valor actual: <strong>{{ counter.value }}</strong></p>
+        </ion-label>
+        <ion-button slot="end" fill="solid" color="light" (click)="increment(counter)">
+          +{{ counter.base }}
+        </ion-button>
+      </ion-item>
+    }
+  </ion-list>
+
+  <!-- Sección para números primos -->
+  <div class="prime-section">
+    <ion-button expand="block" color="secondary" shape="round" (click)="togglePrimes()">
+      {{ showPrimes ? 'Ocultar Números Primos' : 'Mostrar Números Primos' }}
+    </ion-button>
+
+    @if (showPrimes) {
+      <ion-card color="medium" class="prime-card">
+        <ion-card-header>
+          <ion-card-title>Números Primos (1 - 50)</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="prime-badge-container">
+            @for (prime of primeNumbers; track prime) {
+              <ion-badge color="warning" class="prime-badge">{{ prime }}</ion-badge>
+            }
+          </div>
+        </ion-card-content>
+      </ion-card>
+    }
+  </div>
+</ion-content>
